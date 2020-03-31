@@ -1,5 +1,11 @@
+# DS
+.DS_Store
+
 # Compiled class file
 *.class
+
+# out folder
+out/
 
 # Log file
 *.log

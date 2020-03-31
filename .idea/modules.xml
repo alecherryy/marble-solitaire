@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/peg-solitaire.iml" filepath="$PROJECT_DIR$/peg-solitaire.iml" />
+      <module fileurl="file://$PROJECT_DIR$/marble-solitaire.iml" filepath="$PROJECT_DIR$/marble-solitaire.iml" />
     </modules>
   </component>
 </project>

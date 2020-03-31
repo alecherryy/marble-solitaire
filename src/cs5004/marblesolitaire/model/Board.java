@@ -120,6 +120,7 @@ public class Board {
    *
    * @param row the row on the board
    * @param col the row on the board
+   * @return a specified cell within the board
    */
   public Cell getCell(int row, int col) {
     return this.board[row][col];

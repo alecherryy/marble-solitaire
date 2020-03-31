@@ -3,22 +3,23 @@ package cs5004.marblesolitaire.model;
 import org.junit.Assert;
 import org.junit.Test;
 
+import cs5004.marblesolitaire.model.hw09.Board;
+
 import static org.junit.Assert.assertEquals;
 
 /**
  * This is a test unit for the Board class.
  */
-public class BoardTest {
-
-  private Board josiah = new Board();
+public class EnglishBoardTest {
+  private Board josiah = new EnglishBoard();
 
   /**
    * Test for the class constructor.
    */
   @Test
   public void newBoard() {
-    Board alessia = new Board();
-    Assert.assertEquals(""
+    Board alessia = new EnglishBoard();
+    assertEquals(""
             + "    O O O\n"
             + "    O O O\n"
             + "O O O O O O O\n"
@@ -26,7 +27,7 @@ public class BoardTest {
             + "O O O O O O O\n"
             + "    O O O\n"
             + "    O O O", alessia.toString());
-    Board clara = new Board(5);
+    Board clara = new EnglishBoard(5);
     Assert.assertEquals(""
             + "        O O O O O\n"
             + "        O O O O O\n"
@@ -49,19 +50,19 @@ public class BoardTest {
   @Test
   public void testGetLength() {
     assertEquals(7, josiah.getLength());
-    Board clara = new Board(5);
+    Board clara = new EnglishBoard(5);
     assertEquals(13, clara.getLength());
-    Board alessia = new Board(7);
+    Board alessia = new EnglishBoard(7);
     assertEquals(19, alessia.getLength());
   }
 
   /**
-   * Test for the getLength() method.
+   * Test for the countPegs() method.
    */
   @Test
   public void testCountPegs() {
     assertEquals(32, josiah.countPegs());
-    Board clara = new Board(5);
+    Board clara = new EnglishBoard(5);
     assertEquals(104, clara.countPegs());
   }
 
@@ -155,7 +156,7 @@ public class BoardTest {
   }
 
   /**
-   * Test for the hasMove() method.
+   * Test for the isGameOver() method.
    */
   @Test
   public void testIsGameOver() {
@@ -182,7 +183,7 @@ public class BoardTest {
     josiah.changeCell(2,6, Cell.PEG);
     josiah.changeCell(3,6, Cell.PEG);
     Assert.assertFalse(josiah.isGameOver());
-    Board alessia = new Board(5);
+    Board alessia = new EnglishBoard(5);
     helperGame(alessia);
     Assert.assertTrue(alessia.isGameOver());
     alessia.changeCell(5,12, Cell.PEG);

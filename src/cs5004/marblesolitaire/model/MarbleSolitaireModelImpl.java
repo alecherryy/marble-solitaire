@@ -6,7 +6,7 @@ package cs5004.marblesolitaire.model;
  * a board and a score.
  * */
 public class MarbleSolitaireModelImpl implements MarbleSolitaireModel {
-  private Board board;
+  private EnglishBoard board;
   private int score;
 
   /**
@@ -14,7 +14,7 @@ public class MarbleSolitaireModelImpl implements MarbleSolitaireModel {
    * starts a new game with a board of arm thickness equals to 3.
    * */
   public MarbleSolitaireModelImpl() {
-    this.board = new Board();
+    this.board = new EnglishBoard();
     this.score = 32;
   }
 
@@ -28,7 +28,7 @@ public class MarbleSolitaireModelImpl implements MarbleSolitaireModel {
    * */
   public MarbleSolitaireModelImpl(int sRow, int sCol) throws IllegalArgumentException {
     try {
-      this.board = new Board();
+      this.board = new EnglishBoard();
 
       if (isNotValidCenter(sRow, sCol)) {
         throw new IllegalArgumentException("Invalid empty cell position (r,c)");
@@ -55,7 +55,7 @@ public class MarbleSolitaireModelImpl implements MarbleSolitaireModel {
     if (isInvalidArm(arm)) {
       throw new IllegalArgumentException("Invalid arm thickness.");
     }
-    this.board = new Board(arm);
+    this.board = new EnglishBoard(arm);
     this.score = this.board.countPegs();
   }
 
@@ -74,7 +74,7 @@ public class MarbleSolitaireModelImpl implements MarbleSolitaireModel {
       if (isInvalidArm(arm)) {
         throw new IllegalArgumentException("Invalid arm thickness.");
       }
-      this.board = new Board(arm);
+      this.board = new EnglishBoard(arm);
       // check row and col are valid
       if (isNotValidCenter(sRow, sCol)) {
         throw new IllegalArgumentException("Invalid empty cell position (r,c)");

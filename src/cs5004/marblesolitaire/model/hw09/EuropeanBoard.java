@@ -118,6 +118,10 @@ public class EuropeanBoard extends AbstractBoard {
    * @param col the column
    * @return true if at least one move exists, otherwise returns false
    */
+  /**
+   * TODO instead of calculating which rows and indexes are out of bounds,
+   * use try and catch to return false if the item does not have a move
+   */
   private boolean checkNeighbors(int row, int col) {
     // check neighbors of first 2 rows
     if (row == 0 || row == 1) {

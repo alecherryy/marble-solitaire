@@ -101,91 +101,26 @@ public class EuropeanBoard extends AbstractBoard {
     for (int row = 0; row < this.length; row++) {
       for (int col = 0; col < this.length; col++) {
         // return false if at least one move can be made
-        if (this.board[row][col] == Cell.PEG && checkNeighbors(row, col)) {
-          return false;
+        if (this.board[row][col] == Cell.PEG) {
+          checkNeighbors(row, col);
         }
       }
     }
-    return true;
+    return false;
   }
 
   /**
    * This is a helper function to check whether or not there are still
    * moves available in the game. It returns true if at least one move exists,
-   * otherwise returns false.
+   * otherwise returns false. Catches {@IndexOutOfBoundsException} and ignores it.
    *
    * @param row the row
    * @param col the column
    * @return true if at least one move exists, otherwise returns false
    */
-  /**
-   * TODO instead of calculating which rows and indexes are out of bounds,
-   * use try and catch to return false if the item does not have a move
-   */
   private boolean checkNeighbors(int row, int col) {
-    // check neighbors of first 2 rows
-    if (row == 0 || row == 1) {
-      // check left neighbors
-      if (this.board[row][col - 1] == Cell.PEG && this.board[row][col - 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check right neighbors
-      else if (this.board[row][col + 1] == Cell.PEG && this.board[row][col + 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check bottom neighbors
-      else if (this.board[row + 1][col] == Cell.PEG && this.board[row + 2][col] == Cell.EMPTY) {
-        return true;
-      }
-    }
-    // check neighbors of last 2 rows
-    else if (row == this.length - 2 || row == this.length - 1) {
-      // check left neighbors
-      if (this.board[row][col - 1] == Cell.PEG && this.board[row][col - 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check right neighbors
-      else if (this.board[row][col + 1] == Cell.PEG && this.board[row][col + 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check top neighbors
-      else if (this.board[row - 1][col] == Cell.PEG && this.board[row - 2][col] == Cell.EMPTY) {
-        return true;
-      }
-    }
-    // check neighbors of first 2 cols
-    else if (col == 0 || col == 1) {
-      // check right neighbors
-      if (this.board[row][col + 1] == Cell.PEG && this.board[row][col + 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check top neighbors
-      else if (this.board[row - 1][col] == Cell.PEG && this.board[row - 2][col] == Cell.EMPTY) {
-        return true;
-      }
-      // check bottom neighbors
-      else if (this.board[row + 1][col] == Cell.PEG && this.board[row + 2][col] == Cell.EMPTY) {
-        return true;
-      }
-    }
-    // check neighbors of last 2 cols
-    else if (col == this.length - 2 || col == this.length - 1) {
-      // check left neighbors
-      if (this.board[row][col - 1] == Cell.PEG && this.board[row][col - 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check top neighbors
-      else if (this.board[row - 1][col] == Cell.PEG && this.board[row - 2][col] == Cell.EMPTY) {
-        return true;
-      }
-      // check bottom neighbors
-      else if (this.board[row + 1][col] == Cell.PEG && this.board[row + 2][col] == Cell.EMPTY) {
-        return true;
-      }
-    }
-    // check all other cells
-    else {
-      // check left neighbors
+    try {
+      // check left
       if (this.board[row][col - 1] == Cell.PEG && this.board[row][col - 2] == Cell.EMPTY) {
         return true;
       }
@@ -201,6 +136,9 @@ public class EuropeanBoard extends AbstractBoard {
       else if (this.board[row + 1][col] == Cell.PEG && this.board[row + 2][col] == Cell.EMPTY) {
         return true;
       }
+    }
+    catch (IndexOutOfBoundsException e) {
+      // do nothing
     }
     return false;
   }

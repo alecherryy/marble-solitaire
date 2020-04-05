@@ -27,6 +27,8 @@ public abstract class AbstractBoard implements Board {
     // standard board size
     this.length = 7;
     this.board = new Cell[this.length][this.length];
+
+    initializeBoard();
   }
 
   /**
@@ -41,8 +43,25 @@ public abstract class AbstractBoard implements Board {
     // calculate the size of the board based on the arm
     this.length = ((this.arm - 1) * 3) + 1;
     this.board = new Cell[this.length][this.length];
+
+    initializeBoard();
   }
 
+  /**
+   * Initializes a new board and sets all cells to contain a peg; then calls the invalidCells()
+   * function to establish all invalid cells.
+   */
+  private void initializeBoard() {
+    for (int row = 0; row < this.length; row++) {
+      for (int col = 0; col < this.length; col++) {
+        this.board[row][col] = Cell.PEG;
+      }
+    }
+    // calculate the center
+    int center = (int) Math.floor(this.length / 2);
+    // set empty cell
+    this.board[center][center] = Cell.EMPTY;
+  }
   /**
    * Returns the size of the board, i.e. the length of a single row
    * or single column.
@@ -131,5 +150,58 @@ public abstract class AbstractBoard implements Board {
       }
     }
     return str.toString();
+  }
+
+  /**
+   * Iterates through the board and checks whether or not each cell has a peg, if it does, it calls
+   * checkNeighbor() to make sure the peg has valid moves left. If it does, it returns through,
+   * otherwise it returns false.
+   *
+   * @return true if there are moves left, otherwise returns false
+   */
+  public boolean isGameOver() {
+
+    // check each cell for valid move
+    for (int row = 0; row < this.length; row++) {
+      for (int col = 0; col < this.length; col++) {
+        // return false if at least one move can be made
+        if (this.board[row][col] == Cell.PEG && checkNeighbors(row, col)) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  /**
+   * This is a helper function to check whether or not there are still moves available in the game.
+   * It returns true if at least one move exists, otherwise returns false.
+   *
+   * @return true if at least one move exists, otherwise returns false
+   */
+  private boolean checkNeighbors(int row, int col) {
+    // check neighbors of current cell
+    try {
+      // check bottom neighbors
+      if (this.board[row + 1][col] == Cell.PEG && this.board[row + 2][col] == Cell.EMPTY) {
+        return true;
+      }
+      // check left neighbors
+      if (this.board[row][col - 1] == Cell.PEG && this.board[row][col - 2] == Cell.EMPTY) {
+        return true;
+      }
+      // check right neighbors
+      if (this.board[row][col + 1] == Cell.PEG && this.board[row][col + 2] == Cell.EMPTY) {
+        return true;
+      }
+      // check top neighbors
+      if (this.board[row - 1][col] == Cell.PEG && this.board[row - 2][col] == Cell.EMPTY) {
+        return true;
+      }
+    }
+    catch (IndexOutOfBoundsException e) {
+      // do nothing
+    }
+    return false;
   }
 }

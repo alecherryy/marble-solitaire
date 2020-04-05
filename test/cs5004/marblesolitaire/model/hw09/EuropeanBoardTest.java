@@ -3,14 +3,18 @@ package cs5004.marblesolitaire.model.hw09;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.awt.desktop.SystemEventListener;
+
 import cs5004.marblesolitaire.model.Cell;
 import cs5004.marblesolitaire.model.EnglishBoard;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * This is a test unit for the Board class.
  */
 public class EuropeanBoardTest {
-  private Board josiah = new EuropeanBoard();
+  private Board alessia = new EuropeanBoard();
 
   /**
    * Test for the class constructor.
@@ -50,7 +54,7 @@ public class EuropeanBoardTest {
    */
   @Test
   public void testGetLength() {
-    Assert.assertEquals(7, josiah.getLength());
+    Assert.assertEquals(7, alessia.getLength());
     Board kevin = new EnglishBoard(5);
     Assert.assertEquals(13, kevin.getLength());
     kevin = new EnglishBoard(7);
@@ -62,7 +66,7 @@ public class EuropeanBoardTest {
    */
   @Test
   public void testCountPegs() {
-    Assert.assertEquals(36, josiah.countPegs());
+    Assert.assertEquals(36, alessia.countPegs());
     Board alessia = new EuropeanBoard(5);
     Assert.assertEquals(128, alessia.countPegs());
     helperGame(alessia);
@@ -74,22 +78,11 @@ public class EuropeanBoardTest {
    */
   @Test
   public void testGetCell() {
-    Assert.assertEquals(Cell.PEG, josiah.getCell(5,5));
-    Assert.assertEquals(Cell.PEG, josiah.getCell(0,3));
-    Assert.assertEquals(Cell.EMPTY, josiah.getCell(3,3));
-    Assert.assertEquals(Cell.NULL, josiah.getCell(0,5));
-    Assert.assertEquals(Cell.NULL, josiah.getCell(1,6));
-
-  }
-
-  /**
-   * Test for the isGameOver() method.
-   */
-  @Test
-  public void testIsGameOver() {
-    Assert.assertFalse(josiah.isGameOver());
-    helperGame(josiah);
-    Assert.assertTrue(josiah.isGameOver());
+    Assert.assertEquals(Cell.PEG, alessia.getCell(5,5));
+    Assert.assertEquals(Cell.PEG, alessia.getCell(0,3));
+    Assert.assertEquals(Cell.EMPTY, alessia.getCell(3,3));
+    Assert.assertEquals(Cell.NULL, alessia.getCell(0,5));
+    Assert.assertEquals(Cell.NULL, alessia.getCell(1,6));
   }
 
   /**
@@ -97,7 +90,6 @@ public class EuropeanBoardTest {
    */
   @Test
   public void testToString() {
-    Board jenn = new EuropeanBoard();
     Assert.assertEquals(""
             + "    O O O\n"
             + "  O O O O O\n"
@@ -105,17 +97,75 @@ public class EuropeanBoardTest {
             + "O O O _ O O O\n"
             + "O O O O O O O\n"
             + "  O O O O O\n"
-            + "    O O O", jenn.toString());
-    Board clara = new EuropeanBoard(3);
-    helperGame(clara);
+            + "    O O O", alessia.toString());
+    alessia.changeCell(3,6, Cell.EMPTY);
+    alessia.changeCell(4,3, Cell.EMPTY);
     Assert.assertEquals(""
-            + "    _ _ _\n"
-            + "  _ _ _ _ _\n"
+            + "    O O O\n"
+            + "  O O O O O\n"
+            + "O O O O O O O\n"
+            + "O O O _ O O _\n"
+            + "O O O _ O O O\n"
+            + "  O O O O O\n"
+            + "    O O O", alessia.toString());
+    alessia.changeCell(1,1, Cell.EMPTY);
+    alessia.changeCell(6,2, Cell.EMPTY);
+    Assert.assertEquals(""
+            + "    O O O\n"
+            + "  _ O O O O\n"
+            + "O O O O O O O\n"
+            + "O O O _ O O _\n"
+            + "O O O _ O O O\n"
+            + "  O O O O O\n"
+            + "    _ O O", alessia.toString());
+    alessia.changeCell(0,4, Cell.EMPTY);
+    alessia.changeCell(1,5, Cell.EMPTY);
+    alessia.changeCell(2,6, Cell.EMPTY);
+    Assert.assertEquals(""
+            + "    O O _\n"
+            + "  _ O O O _\n"
+            + "O O O O O O _\n"
+            + "O O O _ O O _\n"
+            + "O O O _ O O O\n"
+            + "  O O O O O\n"
+            + "    _ O O", alessia.toString());
+    alessia.changeCell(3,0, Cell.EMPTY);
+    alessia.changeCell(3,1, Cell.EMPTY);
+    alessia.changeCell(3,2, Cell.EMPTY);
+    alessia.changeCell(3,4, Cell.EMPTY);
+    alessia.changeCell(3,5, Cell.EMPTY);
+    Assert.assertEquals(""
+            + "    O O _\n"
+            + "  _ O O O _\n"
+            + "O O O O O O _\n"
             + "_ _ _ _ _ _ _\n"
-            + "_ _ _ _ _ _ _\n"
-            + "_ _ _ _ _ _ _\n"
-            + "  _ _ _ _ _\n"
-            + "    _ _ _", clara.toString());
+            + "O O O _ O O O\n"
+            + "  O O O O O\n"
+            + "    _ O O", alessia.toString());
+  }
+
+  /**
+   * Test for the isGameOver() method.
+   */
+  @Test
+  public void testIsGameOver() {
+    helperGame(alessia);
+    Assert.assertTrue(alessia.isGameOver());
+    alessia.changeCell(3,0, Cell.PEG);
+    alessia.changeCell(3,1, Cell.PEG);
+    alessia.changeCell(3,2, Cell.PEG);
+    alessia.changeCell(3,3, Cell.PEG);
+    alessia.changeCell(3,4, Cell.PEG);
+    alessia.changeCell(3,5, Cell.PEG);
+    alessia.changeCell(3,6, Cell.PEG);
+    Assert.assertTrue(alessia.isGameOver());
+    alessia.changeCell(2,0, Cell.PEG);
+    Assert.assertFalse(alessia.isGameOver());
+    alessia.changeCell(2,0, Cell.EMPTY);
+    alessia.changeCell(1,5, Cell.PEG);
+    Assert.assertTrue(alessia.isGameOver());
+    alessia.changeCell(2,5, Cell.PEG);
+    Assert.assertFalse(alessia.isGameOver());
   }
 
   /**

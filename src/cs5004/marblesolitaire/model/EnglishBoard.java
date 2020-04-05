@@ -15,7 +15,7 @@ public class EnglishBoard extends AbstractBoard {
   public EnglishBoard() {
     super(BoardType.EUROPEAN);
 
-    initializeBoard();
+    invalidCells();
   }
 
   /**
@@ -27,23 +27,6 @@ public class EnglishBoard extends AbstractBoard {
   public EnglishBoard(int arm) {
     super(BoardType.ENGLISH, arm);
 
-    initializeBoard();
-  }
-
-  /**
-   * Initializes a new board and sets all cells to contain a peg; then calls the invalidCells()
-   * function to establish all invalid cells.
-   */
-  private void initializeBoard() {
-    for (int row = 0; row < this.length; row++) {
-      for (int col = 0; col < this.length; col++) {
-        this.board[row][col] = Cell.PEG;
-      }
-    }
-    // calculate the center
-    int center = (int) Math.floor(this.length / 2);
-    // set empty cell
-    this.board[center][center] = Cell.EMPTY;
     invalidCells();
   }
 
@@ -78,114 +61,5 @@ public class EnglishBoard extends AbstractBoard {
         this.board[row][col] = Cell.NULL;
       }
     }
-  }
-
-  /**
-   * Iterates through the board and checks whether or not each cell has a peg, if it does, it calls
-   * checkNeighbor() to make sure the peg has valid moves left. If it does, it returns through,
-   * otherwise it returns false.
-   *
-   * @return true if there are moves left, otherwise returns false
-   */
-  public boolean isGameOver() {
-    // check if cells have valid move
-    for (int row = 0; row < this.length; row++) {
-      for (int col = 0; col < this.length; col++) {
-        // return false if at least one move can be made
-        if (this.board[row][col] == Cell.PEG && checkNeighbors(row, col)) {
-          return false;
-        }
-      }
-    }
-    return true;
-  }
-
-  /**
-   * This is a helper function to check whether or not there are still moves available in the game.
-   * It returns true if at least one move exists, otherwise returns false.
-   *
-   * @return true if at least one move exists, otherwise returns false
-   */
-  private boolean checkNeighbors(int row, int col) {
-    // check neighbors of first 2 rows
-    if (row == 0 || row == 1) {
-      // check left neighbors
-      if (this.board[row][col - 1] == Cell.PEG && this.board[row][col - 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check right neighbors
-      else if (this.board[row][col + 1] == Cell.PEG && this.board[row][col + 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check bottom neighbors
-      else if (this.board[row + 1][col] == Cell.PEG && this.board[row + 2][col] == Cell.EMPTY) {
-        return true;
-      }
-    }
-    // check neighbors of last 2 rows
-    else if (row == this.length - 2 || row == this.length - 1) {
-      // check left neighbors
-      if (this.board[row][col - 1] == Cell.PEG && this.board[row][col - 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check right neighbors
-      else if (this.board[row][col + 1] == Cell.PEG && this.board[row][col + 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check top neighbors
-      else if (this.board[row - 1][col] == Cell.PEG && this.board[row - 2][col] == Cell.EMPTY) {
-        return true;
-      }
-    }
-    // check neighbors of first 2 cols
-    else if (col == 0 || col == 1) {
-      // check right neighbors
-      if (this.board[row][col + 1] == Cell.PEG && this.board[row][col + 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check top neighbors
-      else if (this.board[row - 1][col] == Cell.PEG && this.board[row - 2][col] == Cell.EMPTY) {
-        return true;
-      }
-      // check bottom neighbors
-      else if (this.board[row + 1][col] == Cell.PEG && this.board[row + 2][col] == Cell.EMPTY) {
-        return true;
-      }
-    }
-    // check neighbors of last 2 cols
-    else if (col == this.length - 2 || col == this.length - 1) {
-      // check left neighbors
-      if (this.board[row][col - 1] == Cell.PEG && this.board[row][col - 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check top neighbors
-      else if (this.board[row - 1][col] == Cell.PEG && this.board[row - 2][col] == Cell.EMPTY) {
-        return true;
-      }
-      // check bottom neighbors
-      else if (this.board[row + 1][col] == Cell.PEG && this.board[row + 2][col] == Cell.EMPTY) {
-        return true;
-      }
-    }
-    // check all other cells
-    else {
-      // check left neighbors
-      if (this.board[row][col - 1] == Cell.PEG && this.board[row][col - 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check right neighbors
-      else if (this.board[row][col + 1] == Cell.PEG && this.board[row][col + 2] == Cell.EMPTY) {
-        return true;
-      }
-      // check top neighbors
-      else if (this.board[row - 1][col] == Cell.PEG && this.board[row - 2][col] == Cell.EMPTY) {
-        return true;
-      }
-      // check bottom neighbors
-      else if (this.board[row + 1][col] == Cell.PEG && this.board[row + 2][col] == Cell.EMPTY) {
-        return true;
-      }
-    }
-    return false;
   }
 }

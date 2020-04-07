@@ -3,12 +3,8 @@ package cs5004.marblesolitaire.model.hw09;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.awt.desktop.SystemEventListener;
-
 import cs5004.marblesolitaire.model.Cell;
 import cs5004.marblesolitaire.model.EnglishBoard;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * This is a test unit for the Board class.

@@ -15,7 +15,7 @@ public class EuropeanBoard extends AbstractBoard {
   public EuropeanBoard() {
     super(BoardType.EUROPEAN);
 
-    initializeBoard();
+    invalidCells();
   }
 
   /**
@@ -27,23 +27,6 @@ public class EuropeanBoard extends AbstractBoard {
   public EuropeanBoard(int arm) {
     super(BoardType.ENGLISH, arm);
 
-    initializeBoard();
-  }
-
-  /**
-   * Initializes a new board and sets all cells to contain a peg; then
-   * calls the invalidCells() function to establish all invalid cells.
-   */
-  private void initializeBoard() {
-    for (int row = 0; row < this.length; row++) {
-      for (int col = 0; col < this.length; col++) {
-        this.board[row][col] = Cell.PEG;
-      }
-    }
-    // calculate the center
-    int center = (int) Math.floor(this.length / 2);
-    // set empty cell
-    this.board[center][center] = Cell.EMPTY;
     invalidCells();
   }
 

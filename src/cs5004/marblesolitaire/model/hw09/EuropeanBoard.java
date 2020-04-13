@@ -25,7 +25,7 @@ public class EuropeanBoard extends AbstractBoard {
    * @param arm the thickness of the arm
    */
   public EuropeanBoard(int arm) {
-    super(BoardType.ENGLISH, arm);
+    super(BoardType.EUROPEAN, arm);
 
     invalidCells();
   }

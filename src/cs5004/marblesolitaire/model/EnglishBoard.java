@@ -13,7 +13,7 @@ public class EnglishBoard extends AbstractBoard {
    * This is the board constructor.
    */
   public EnglishBoard() {
-    super(BoardType.EUROPEAN);
+    super(BoardType.ENGLISH);
 
     invalidCells();
   }

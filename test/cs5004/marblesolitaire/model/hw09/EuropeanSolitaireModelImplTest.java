@@ -1,13 +1,15 @@
-package cs5004.marblesolitaire.model;
+package cs5004.marblesolitaire.model.hw09;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import cs5004.marblesolitaire.model.MarbleSolitaireModel;
+
 /**
- * These are test cases for the Marble Solitaire class.
+ * These are test cases for the European Marble Solitaire class.
  */
-public class MarbleSolitaireModelImplTest {
+public class EuropeanSolitaireModelImplTest {
   private MarbleSolitaireModel josiah;
   private MarbleSolitaireModel alessia;
   private MarbleSolitaireModel kevin;
@@ -20,15 +22,15 @@ public class MarbleSolitaireModelImplTest {
    */
   @Test
   public void testFirstConstructor() {
-    MarbleSolitaireModel josiah = new MarbleSolitaireModelImpl();
-    Assert.assertEquals(32, josiah.getScore());
+    josiah = new EuropeanSolitaireModelImpl();
+    Assert.assertEquals(36, josiah.getScore());
     Assert.assertEquals(""
             + "    O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "O O O O O O O\n"
             + "O O O _ O O O\n"
             + "O O O O O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "    O O O", josiah.getGameState());
   }
 
@@ -37,23 +39,23 @@ public class MarbleSolitaireModelImplTest {
    */
   @Test
   public void testSecondConstructor() {
-    alessia = new MarbleSolitaireModelImpl(0,2);
+    alessia = new EuropeanSolitaireModelImpl(0,2);
     Assert.assertEquals(""
             + "    _ O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "O O O O O O O\n"
             + "O O O O O O O\n"
             + "O O O O O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "    O O O", alessia.getGameState());
-    kevin = new MarbleSolitaireModelImpl(4,3);
+    kevin = new EuropeanSolitaireModelImpl(4,3);
     Assert.assertEquals(""
             + "    O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "O O O O O O O\n"
             + "O O O O O O O\n"
             + "O O O _ O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "    O O O", kevin.getGameState());
   }
 
@@ -62,33 +64,33 @@ public class MarbleSolitaireModelImplTest {
    */
   @Test
   public void testThirdConstructor() {
-    MarbleSolitaireModel josiah = new MarbleSolitaireModelImpl(3);
-    Assert.assertEquals(32, josiah.getScore());
+    chris = new EuropeanSolitaireModelImpl(3);
+    Assert.assertEquals(36, chris.getScore());
     Assert.assertEquals(""
             + "    O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "O O O O O O O\n"
             + "O O O _ O O O\n"
             + "O O O O O O O\n"
-            + "    O O O\n"
-            + "    O O O", josiah.getGameState());
-    MarbleSolitaireModel clara = new MarbleSolitaireModelImpl(5);
-    Assert.assertEquals(104, clara.getScore());
-    Assert.assertFalse(clara.isGameOver());
+            + "  O O O O O\n"
+            + "    O O O", chris.getGameState());
+    chandler = new EuropeanSolitaireModelImpl(5);
+    Assert.assertEquals(128, chandler.getScore());
+    Assert.assertFalse(chandler.isGameOver());
     Assert.assertEquals(""
             + "        O O O O O\n"
-            + "        O O O O O\n"
-            + "        O O O O O\n"
-            + "        O O O O O\n"
+            + "      O O O O O O O\n"
+            + "    O O O O O O O O O\n"
+            + "  O O O O O O O O O O O\n"
             + "O O O O O O O O O O O O O\n"
             + "O O O O O O O O O O O O O\n"
             + "O O O O O O _ O O O O O O\n"
             + "O O O O O O O O O O O O O\n"
             + "O O O O O O O O O O O O O\n"
-            + "        O O O O O\n"
-            + "        O O O O O\n"
-            + "        O O O O O\n"
-            + "        O O O O O", clara.getGameState());
+            + "  O O O O O O O O O O O\n"
+            + "    O O O O O O O O O\n"
+            + "      O O O O O O O\n"
+            + "        O O O O O", chandler.getGameState());
   }
 
   /**
@@ -96,57 +98,57 @@ public class MarbleSolitaireModelImplTest {
    */
   @Test
   public void testFourthConstructor() {
-    josiah = new MarbleSolitaireModelImpl(3,3,6);
+    josiah = new EuropeanSolitaireModelImpl(3,3,6);
     Assert.assertEquals(""
             + "    O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "O O O O O O O\n"
             + "O O O O O O _\n"
             + "O O O O O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "    O O O", josiah.getGameState());
-    kevin = new MarbleSolitaireModelImpl(3,2,6);
+    kevin = new EuropeanSolitaireModelImpl(3,1,5);
     Assert.assertEquals(""
             + "    O O O\n"
-            + "    O O O\n"
+            + "  O O O O _\n"
             + "O O O O O O O\n"
-            + "O O O O O O _\n"
             + "O O O O O O O\n"
-            + "    O O O\n"
+            + "O O O O O O O\n"
+            + "  O O O O O\n"
             + "    O O O", josiah.getGameState());
-    alessia = new MarbleSolitaireModelImpl(3, 0,2);
+    alessia = new EuropeanSolitaireModelImpl(3, 5,1);
     Assert.assertEquals(""
-            + "    _ O O\n"
             + "    O O O\n"
+            + "  O O O O O\n"
             + "O O O O O O O\n"
             + "O O O O O O O\n"
             + "O O O O O O O\n"
-            + "    O O O\n"
+            + "  _ O O O O\n"
             + "    O O O", alessia.getGameState());
-    jenn = new MarbleSolitaireModelImpl(5, 2,5);
+    jenn = new EuropeanSolitaireModelImpl(5, 3,7);
     Assert.assertEquals(""
             + "        O O O O O\n"
-            + "        O O O O O\n"
-            + "        O _ O O O\n"
-            + "        O O O O O\n"
+            + "      O O O O O O O\n"
+            + "    O O O O O O O O O\n"
+            + "  O O O O O O _ O O O O\n"
             + "O O O O O O O O O O O O O\n"
             + "O O O O O O O O O O O O O\n"
             + "O O O O O O O O O O O O O\n"
             + "O O O O O O O O O O O O O\n"
             + "O O O O O O O O O O O O O\n"
-            + "        O O O O O\n"
-            + "        O O O O O\n"
-            + "        O O O O O\n"
+            + "  O O O O O O O O O O O\n"
+            + "    O O O O O O O O O\n"
+            + "      O O O O O O O\n"
             + "        O O O O O", jenn.getGameState());
-    chandler = new MarbleSolitaireModelImpl(3, 3,6);
+    chandler = new EuropeanSolitaireModelImpl(3, 6,3);
     Assert.assertEquals(""
             + "    O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "O O O O O O O\n"
-            + "O O O O O O _\n"
             + "O O O O O O O\n"
-            + "    O O O\n"
-            + "    O O O", chandler.getGameState());
+            + "O O O O O O O\n"
+            + "  O O O O O\n"
+            + "    O _ O", chandler.getGameState());
   }
 
   /**
@@ -154,17 +156,17 @@ public class MarbleSolitaireModelImplTest {
    */
   @Test (expected = IllegalArgumentException.class)
   public void testInvalidGetMarkAtRow() {
-    josiah = new MarbleSolitaireModelImpl(4);
-    jenn = new MarbleSolitaireModelImpl(-3);
-    chandler = new MarbleSolitaireModelImpl(0,0);
-    kevin = new MarbleSolitaireModelImpl(4, 3,3);
-    chris = new MarbleSolitaireModelImpl(5, 0,0);
-    josiah = new MarbleSolitaireModelImpl(-2);
-    jenn = new MarbleSolitaireModelImpl(0);
-    chandler = new MarbleSolitaireModelImpl(6,5);
-    kevin = new MarbleSolitaireModelImpl(0, 0,0);
-    chris = new MarbleSolitaireModelImpl(4,2);
-    josiah = new MarbleSolitaireModelImpl(4,0);
+    josiah = new EuropeanSolitaireModelImpl(0);
+    jenn = new EuropeanSolitaireModelImpl(2);
+    kevin = new EuropeanSolitaireModelImpl(6);
+    chandler = new EuropeanSolitaireModelImpl(0,0);
+    kevin = new EuropeanSolitaireModelImpl(4, 3,3);
+    chris = new EuropeanSolitaireModelImpl(5, 0,0);
+    josiah = new EuropeanSolitaireModelImpl(10);
+    jenn = new EuropeanSolitaireModelImpl(-5);
+    chandler = new EuropeanSolitaireModelImpl(-4,5);
+    kevin = new EuropeanSolitaireModelImpl(0, 0,0);
+    chris = new EuropeanSolitaireModelImpl(6,6);
   }
 
   /**
@@ -172,15 +174,9 @@ public class MarbleSolitaireModelImplTest {
    */
   @Test
   public void testIsGameOver() {
-    chris = new MarbleSolitaireModelImpl();
+    chris = new EuropeanSolitaireModelImpl();
     Assert.assertFalse(chris.isGameOver());
-    alessia = new MarbleSolitaireModelImpl(5);
-    Assert.assertFalse(alessia.isGameOver());
-    jenn = new MarbleSolitaireModelImpl(3,6);
-    Assert.assertFalse(jenn.isGameOver());
-    chandler = new MarbleSolitaireModelImpl(5,4, 4);
-    Assert.assertFalse(chandler.isGameOver());
-    kevin = new MarbleSolitaireModelImpl();
+    kevin = new EuropeanSolitaireModelImpl();
     Assert.assertFalse(kevin.isGameOver());
   }
 
@@ -189,20 +185,13 @@ public class MarbleSolitaireModelImplTest {
    */
   @Test
   public void testMove() {
-    josiah = new MarbleSolitaireModelImpl();
+    josiah = new EuropeanSolitaireModelImpl();
     josiah.move(3,5, 3,3);
-    Assert.assertEquals(31, josiah.getScore());
-    josiah.move(3,2, 3,4);
-    Assert.assertEquals(30, josiah.getScore());
-    josiah.move(3,0, 3,2);
-    Assert.assertEquals(29, josiah.getScore());
-    josiah.move(5,3, 3,3);
-    Assert.assertEquals(28, josiah.getScore());
-    josiah.move(3,3, 5,3);
-    Assert.assertEquals(27, josiah.getScore());
-    chandler = new MarbleSolitaireModelImpl(5, 0, 6);
-    chandler.move(0, 4, 0, 6);
-    Assert.assertEquals(103, chandler.getScore());
+    Assert.assertEquals(35, josiah.getScore());
+    josiah.move(5,4, 3,4);
+    Assert.assertEquals(34, josiah.getScore());
+    josiah.move(3,3, 3,5);
+    Assert.assertEquals(33, josiah.getScore());
   }
 
   /**
@@ -210,76 +199,60 @@ public class MarbleSolitaireModelImplTest {
    */
   @Test
   public void testGetGameState() {
-    kevin = new MarbleSolitaireModelImpl();
+    kevin = new EuropeanSolitaireModelImpl();
     Assert.assertEquals(""
             + "    O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "O O O O O O O\n"
             + "O O O _ O O O\n"
             + "O O O O O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "    O O O", kevin.getGameState());
     kevin.move(1,3, 3,3);
     Assert.assertEquals(""
             + "    O O O\n"
-            + "    O _ O\n"
+            + "  O O _ O O\n"
             + "O O O _ O O O\n"
             + "O O O O O O O\n"
             + "O O O O O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "    O O O", kevin.getGameState());
     kevin.move(4,3, 2,3);
     Assert.assertEquals(""
             + "    O O O\n"
-            + "    O _ O\n"
+            + "  O O _ O O\n"
             + "O O O O O O O\n"
             + "O O O _ O O O\n"
             + "O O O _ O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "    O O O", kevin.getGameState());
     kevin.move(4,1, 4,3);
     Assert.assertEquals(""
             + "    O O O\n"
-            + "    O _ O\n"
+            + "  O O _ O O\n"
             + "O O O O O O O\n"
             + "O O O _ O O O\n"
             + "O _ _ O O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "    O O O", kevin.getGameState());
     kevin.move(2,1, 4,1);
     Assert.assertEquals(""
             + "    O O O\n"
-            + "    O _ O\n"
+            + "  O O _ O O\n"
             + "O _ O O O O O\n"
             + "O _ O _ O O O\n"
             + "O O _ O O O O\n"
-            + "    O O O\n"
+            + "  O O O O\n"
             + "    O O O", kevin.getGameState());
-    chandler = new MarbleSolitaireModelImpl(3, 0, 4);
+    chandler = new EuropeanSolitaireModelImpl(3, 0, 4);
     Assert.assertEquals(""
             + "    O O _\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "O O O O O O O\n"
             + "O O O O O O O\n"
             + "O O O O O O O\n"
-            + "    O O O\n"
+            + "  O O O O O\n"
             + "    O O O", chandler.getGameState());
-    alessia = new MarbleSolitaireModelImpl(5, 0, 6);
-    alessia.move(0, 4, 0, 6);
-    Assert.assertEquals(""
-            + "        _ _ O O O\n"
-            + "        O O O O O\n"
-            + "        O O O O O\n"
-            + "        O O O O O\n"
-            + "O O O O O O O O O O O O O\n"
-            + "O O O O O O O O O O O O O\n"
-            + "O O O O O O O O O O O O O\n"
-            + "O O O O O O O O O O O O O\n"
-            + "O O O O O O O O O O O O O\n"
-            + "        O O O O O\n"
-            + "        O O O O O\n"
-            + "        O O O O O\n"
-            + "        O O O O O", alessia.getGameState());
   }
 
   /**
@@ -287,7 +260,7 @@ public class MarbleSolitaireModelImplTest {
    */
   @Before
   public void setUp() {
-    chris = new MarbleSolitaireModelImpl();
+    chris = new EuropeanSolitaireModelImpl();
     chris.move(3,5, 3,3);
     chris.move(3,2, 3,4);
     chris.move(3,0, 3,2);
@@ -319,5 +292,4 @@ public class MarbleSolitaireModelImplTest {
     // empty cell
     chris.move(3,3, 5,3);
   }
-
 }

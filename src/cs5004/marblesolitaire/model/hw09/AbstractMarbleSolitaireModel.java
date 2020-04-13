@@ -1,21 +1,25 @@
-package cs5004.marblesolitaire.model;
+package cs5004.marblesolitaire.model.hw09;
+
+import cs5004.marblesolitaire.model.Cell;
+import cs5004.marblesolitaire.model.EnglishBoard;
+import cs5004.marblesolitaire.model.MarbleSolitaireModel;
 
 /**
  * This class represents a single game of Marble Solitaire. It implements
  * all the methods listed in the Marble Solitaire interface. Marble Solitaire has
  * a board and a score.
  * */
-public class MarbleSolitaireModelImpl implements MarbleSolitaireModel {
-  private EnglishBoard board;
-  private int score;
+public abstract class AbstractMarbleSolitaireModel implements MarbleSolitaireModel {
+  protected Board board;
+  protected int score;
 
   /**
    * This is the first class constructor. It takes no arguments and
    * starts a new game with a board of arm thickness equals to 3.
    * */
-  public MarbleSolitaireModelImpl() {
+  public AbstractMarbleSolitaireModel() {
     this.board = new EnglishBoard();
-    this.score = 32;
+    this.score = this.board.countPegs();
   }
 
   /**
@@ -26,7 +30,7 @@ public class MarbleSolitaireModelImpl implements MarbleSolitaireModel {
    * @param sCol the row of the empty cell
    * @throws IllegalArgumentException if the row or column are not valid
    * */
-  public MarbleSolitaireModelImpl(int sRow, int sCol) throws IllegalArgumentException {
+  public AbstractMarbleSolitaireModel(int sRow, int sCol) {
     try {
       this.board = new EnglishBoard();
 
@@ -35,7 +39,7 @@ public class MarbleSolitaireModelImpl implements MarbleSolitaireModel {
       }
       this.board.changeCell(3,3, Cell.PEG);
       this.board.changeCell(sRow, sCol, Cell.EMPTY);
-      this.score = 32;
+      this.score = this.board.countPegs();
     }
     catch (ArrayIndexOutOfBoundsException i) {
       throw new IllegalArgumentException("This cell does not exist on the board.");
@@ -50,7 +54,7 @@ public class MarbleSolitaireModelImpl implements MarbleSolitaireModel {
    * @param arm the row of the empty cell
    * @throws IllegalArgumentException if the row or column are not valid
    * */
-  public MarbleSolitaireModelImpl(int arm) throws IllegalArgumentException {
+  public AbstractMarbleSolitaireModel(int arm) {
     // check arm is a valid value
     if (isInvalidArm(arm)) {
       throw new IllegalArgumentException("Invalid arm thickness.");
@@ -68,7 +72,7 @@ public class MarbleSolitaireModelImpl implements MarbleSolitaireModel {
    * @param arm the thickness of the arm
    * @throws IllegalArgumentException if the row or column are not valid
    * */
-  public MarbleSolitaireModelImpl(int arm, int sRow, int sCol) throws IllegalArgumentException {
+  public AbstractMarbleSolitaireModel(int arm, int sRow, int sCol) {
     try {
       // check arm is a valid value
       if (isInvalidArm(arm)) {
@@ -100,7 +104,7 @@ public class MarbleSolitaireModelImpl implements MarbleSolitaireModel {
    * @param arm the arm thickness
    * @return true if arm is positive and odd, otherwise returns false
    * */
-  private boolean isInvalidArm(int arm) {
+  boolean isInvalidArm(int arm) {
     return arm % 2 == 0 || arm < 3;
   }
 
@@ -112,7 +116,7 @@ public class MarbleSolitaireModelImpl implements MarbleSolitaireModel {
    * @param col the given row
    * @return true if cell is not null, otherwise returns false
    * */
-  private boolean isNotValidCenter(int row, int col) {
+  protected boolean isNotValidCenter(int row, int col) {
     return this.board.getCell(row, col) == Cell.NULL;
   }
 
@@ -184,7 +188,7 @@ public class MarbleSolitaireModelImpl implements MarbleSolitaireModel {
    *              (starts at 0)
    * @return true if it's a valid horizontal move, otherwise returns false
    * */
-  private boolean moveHorizontal(int fromRow, int fromCol, int toRow, int toCol) {
+  protected boolean moveHorizontal(int fromRow, int fromCol, int toRow, int toCol) {
     // if rows don't match, it's not a horizontal move so return
     return fromRow == toRow
             && Math.abs(fromCol - toCol) == 2

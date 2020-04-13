@@ -153,8 +153,9 @@ public abstract class AbstractBoard implements Board {
   }
 
   /**
-   * Iterates through the board and checks whether or not each cell has a peg, if it does, it calls
-   * checkNeighbor() to make sure the peg has valid moves left. If it does, it returns through,
+   * Iterates through the board and checks whether or not
+   * each cell has a peg, if it does, it calls checkNeighbor() to make
+   * sure the peg has valid moves left. If it does, it returns through,
    * otherwise it returns false.
    *
    * @return true if there are moves left, otherwise returns false
@@ -179,7 +180,7 @@ public abstract class AbstractBoard implements Board {
    *
    * @return true if at least one move exists, otherwise returns false
    */
-  private boolean checkNeighbors(int row, int col) {
+  protected boolean checkNeighbors(int row, int col) {
     // check neighbors of current cell
     try {
       // check bottom neighbors

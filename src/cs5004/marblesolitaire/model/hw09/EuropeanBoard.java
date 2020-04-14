@@ -3,9 +3,8 @@ package cs5004.marblesolitaire.model.hw09;
 import cs5004.marblesolitaire.model.Cell;
 
 /**
- * This class represents an English Board for Marble Solitaire. Traditionally, this
- * board is 9x9 and in the shape of a cross. Each cell contains an Enum Type representing
- * the invalid, empty and occupied cells.
+ * This class represents an English Board for Marble Solitaire. Each cell
+ * contains an Enum Type representing the invalid, empty and occupied cells.
  * */
 public class EuropeanBoard extends AbstractBoard {
 
@@ -31,7 +30,7 @@ public class EuropeanBoard extends AbstractBoard {
   }
 
   /**
-   * Helper function to set the corner quadrants of the board to be invalid.
+   * Override the invalidCells() helper function.
    */
   private void invalidCells() {
     int i = 0;

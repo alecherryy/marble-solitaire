@@ -5,15 +5,16 @@ import cs5004.marblesolitaire.model.EnglishBoard;
 import cs5004.marblesolitaire.model.EnglishSolitaireModelImpl;
 
 /**
- * This class represents a single game of Marble Solitaire. It implements
- * all the methods listed in the Marble Solitaire interface. Marble Solitaire has
- * a board and a score.
+ * This class represents a single game of Marble Solitaire using
+ * a Triangle board. This class extends the English Solitaire Model
+ * without extending the abstract class, given the class constructors
+ * are significantly different.
  * */
 public class TriangleSolitaireModelImpl extends EnglishSolitaireModelImpl {
 
   /**
    * This is the first class constructor. It takes no arguments and
-   * starts a new game with a board of arm thickness equals to 3.
+   * starts a new game with a board length equals to 5.
    * */
   public TriangleSolitaireModelImpl() {
     this.board = new TriangleBoard();
@@ -45,36 +46,36 @@ public class TriangleSolitaireModelImpl extends EnglishSolitaireModelImpl {
   }
 
   /**
-   * This is the third class constructor. It takes the arm thickness as
+   * This is the third class constructor. It takes the board length thickness as
    * its only parameter and initializes a board with the empty
    * cell in the center.
    *
-   * @param arm the row of the empty cell
+   * @param length the length of the board
    * @throws IllegalArgumentException if the row or column are not valid
    * */
-  public TriangleSolitaireModelImpl(int arm) {
+  public TriangleSolitaireModelImpl(int length) {
 
     // check arm is a valid value
-    if (arm < 5) {
+    if (length < 5) {
       throw new IllegalArgumentException("Invalid arm thickness.");
     }
-    this.board = new TriangleBoard(arm);
+    this.board = new TriangleBoard(length);
     this.score = this.board.countPegs();
   }
 
   /**
-   * This is the fourth class constructor. It takes row, col and arm thickness as
+   * This is the fourth class constructor. It takes row, col and length as
    * its parameters and initializes a board with the empty slot in the given cell.
    *
+   * @param length the length of the board
    * @param sRow the row of the empty cell
    * @param sCol the row of the empty cell
-   * @param arm the thickness of the arm
    * @throws IllegalArgumentException if the row or column are not valid
    * */
-  public TriangleSolitaireModelImpl(int arm, int sRow, int sCol) {
+  public TriangleSolitaireModelImpl(int length, int sRow, int sCol) {
 
     try {
-      this.board = new TriangleBoard(arm);
+      this.board = new TriangleBoard(length);
       // check row and col are valid
       if (isNotValidCenter(sRow, sCol)) {
         throw new IllegalArgumentException("Invalid empty cell position (r,c)");
@@ -144,7 +145,6 @@ public class TriangleSolitaireModelImpl extends EnglishSolitaireModelImpl {
    * @return true if it's a valid horizontal move, otherwise returns false
    * */
   private boolean moveDiagonal(int fromRow, int fromCol, int toRow, int toCol) {
-    // check left and right diagonal
     if (fromCol == toCol && Math.abs(fromRow - toRow) == 2) {
       // change the state of the middle cell
       this.board.changeCell((fromRow + toRow) / 2, toCol, Cell.EMPTY);

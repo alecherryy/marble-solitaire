@@ -5,7 +5,7 @@ import cs5004.marblesolitaire.model.Cell;
 /**
  * This abstract class represents a board for a game of Marble
  * Solitaire; it implements all methods listed in the Board Interface.
- * There are three concrete classes extending this abstract class.
+ * There are two concrete classes extending this abstract class.
  * */
 public abstract class AbstractBoard implements Board {
   protected BoardType type;
@@ -48,8 +48,7 @@ public abstract class AbstractBoard implements Board {
   }
 
   /**
-   * Initializes a new board and sets all cells to contain a peg; then calls the invalidCells()
-   * function to establish all invalid cells.
+   * Initializes a new board and sets all cells to contain a peg.
    */
   private void initializeBoard() {
     for (int row = 0; row < this.length; row++) {
@@ -175,8 +174,9 @@ public abstract class AbstractBoard implements Board {
   }
 
   /**
-   * This is a helper function to check whether or not there are still moves available in the game.
-   * It returns true if at least one move exists, otherwise returns false.
+   * This is a helper function to check whether or not there are
+   * still moves available in the game. It returns true if at
+   * least one move exists, otherwise returns false.
    *
    * @return true if at least one move exists, otherwise returns false
    */

@@ -158,7 +158,6 @@ public class TriangleSolitaireModelImplTest {
   @Test (expected = IllegalArgumentException.class)
   public void testInvalidMove() {
     jenn = new TriangleSolitaireModelImpl(7);
-    System.out.println(jenn.getGameState());
     // jumps 3 rows diagonal
     jenn.move(3,3, 0, 0);
     // vertical move

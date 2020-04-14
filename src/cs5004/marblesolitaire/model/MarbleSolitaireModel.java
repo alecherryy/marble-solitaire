@@ -20,12 +20,11 @@ public interface MarbleSolitaireModel {
    *              (starts at 0)
    * @throws IllegalArgumentException if the move is not possible
    */
-  void move(int fromRow,int fromCol,int toRow,int toCol) throws
-          IllegalArgumentException ;
+  void move(int fromRow,int fromCol,int toRow,int toCol);
 
   /**
-   * Determine and return if the game is over or not. A game is over if no
-   * more moves can be made.
+   * Determine and return if the game is over or not.
+   * A game is over if no more moves can be made.
    * @return true if the game is over, false otherwise
    */
   boolean isGameOver();

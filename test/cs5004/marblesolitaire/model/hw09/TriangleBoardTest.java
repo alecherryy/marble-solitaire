@@ -4,8 +4,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import cs5004.marblesolitaire.model.Cell;
-import cs5004.marblesolitaire.model.EnglishBoard;
 
+/**
+ * This is a JUnit test suite for the Triangle Board.
+ */
 public class TriangleBoardTest {
   private Board jenn = new TriangleBoard();
 
@@ -13,7 +15,7 @@ public class TriangleBoardTest {
    * Test for the class constructor.
    */
   @Test
-  public void newEuropeanBoard() {
+  public void testTriangleBoard() {
     Assert.assertEquals(""
             + "    _\n"
             + "   O O\n"
@@ -33,6 +35,9 @@ public class TriangleBoardTest {
             + "O O O O O O O", alessia.toString());
   }
 
+  /**
+   * Test for the countPegs() method.
+   */
   @Test
   public void testCountPegs() {
     Board alessia = new TriangleBoard(6);

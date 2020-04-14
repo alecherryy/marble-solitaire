@@ -79,14 +79,14 @@ public abstract class AbstractMarbleSolitaireModel implements MarbleSolitaireMod
         throw new IllegalArgumentException("Invalid arm thickness.");
       }
       this.board = new EnglishBoard(arm);
-      // check row and col are valid
-      if (isNotValidCenter(sRow, sCol)) {
-        throw new IllegalArgumentException("Invalid empty cell position (r,c)");
-      }
       // set the center
       int center = (int) Math.floor(this.board.getLength() / 2);
       // update default empty cell
       this.board.changeCell(center, center, Cell.PEG);
+      // check row and col are valid
+      if (isNotValidCenter(sRow, sCol)) {
+        throw new IllegalArgumentException("Invalid empty cell position (r,c)");
+      }
       // set new empty cell
       this.board.changeCell(sRow, sCol, Cell.EMPTY);
       this.score = this.board.countPegs();
@@ -137,11 +137,11 @@ public abstract class AbstractMarbleSolitaireModel implements MarbleSolitaireMod
    */
   public void move(int fromRow, int fromCol, int toRow, int toCol) {
     // if given start cell is not a peg, throw exception
-    if (validMoveInput(fromRow, fromCol, toRow, toCol)) {
-      try {
+    try {
+      if (validMoveInput(fromRow, fromCol, toRow, toCol)) {
         // check horizontal and vertical moves
         if (moveHorizontal(fromRow, fromCol, toRow, toCol)
-        || moveVertical(fromRow, fromCol, toRow, toCol)) {
+                || moveVertical(fromRow, fromCol, toRow, toCol)) {
           // change the state of the old cell
           this.board.changeCell(fromRow, fromCol, Cell.EMPTY);
           // change the state of the new cell
@@ -151,12 +151,12 @@ public abstract class AbstractMarbleSolitaireModel implements MarbleSolitaireMod
           return;
         }
       }
-      // if index is out of bounds, throw new IllegalArgumentException
-      catch (ArrayIndexOutOfBoundsException i) {
-        throw new IllegalArgumentException("This cell does not exist on the board.");
-      }
+      throw new IllegalArgumentException("Invalid cell position (r,c)");
     }
-    throw new IllegalArgumentException("Invalid cell position (r,c)");
+    // if index is out of bounds, throw new IllegalArgumentException
+    catch (ArrayIndexOutOfBoundsException i) {
+      throw new IllegalArgumentException("This cell does not exist on the board.");
+    }
   }
 
   /**
@@ -177,6 +177,7 @@ public abstract class AbstractMarbleSolitaireModel implements MarbleSolitaireMod
     return  this.board.getCell(fromRow, fromCol) == Cell.PEG
             && this.board.getCell(toRow, toCol) == Cell.EMPTY;
   }
+
   /**
    * Helper function to check if move is horizontal. It takes 4 parameters:
    * the start row, the start col, the destination row and the destination col.

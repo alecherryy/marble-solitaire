@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * These are test cases for the Marble Solitaire class.
+ * This is a JUnit test suite for the EnglishMarbleSolitaireImpl class.
  */
 public class EnglishSolitaireModelImplTest {
   private MarbleSolitaireModel josiah;

@@ -120,7 +120,7 @@ public class TriangleSolitaireModelImplTest {
   }
 
   /**
-   * Test for the fourth class constructor.
+   * Test for move() method.
    */
   @Test
   public void testMove() {
@@ -159,7 +159,7 @@ public class TriangleSolitaireModelImplTest {
   public void testInvalidMove() {
     jenn = new TriangleSolitaireModelImpl(7);
     // jumps 3 rows diagonal
-    jenn.move(3,3, 0, 0);
+    jenn.move(-2,3, 0, 0);
     // vertical move
     jenn.move(2,1, 0,0);
     // from empty cell

@@ -61,6 +61,7 @@ public abstract class AbstractBoard implements Board {
     // set empty cell
     this.board[center][center] = Cell.EMPTY;
   }
+
   /**
    * Returns the size of the board, i.e. the length of a single row
    * or single column.

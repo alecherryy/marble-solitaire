@@ -1,7 +1,6 @@
 package cs5004.marblesolitaire.model.hw09;
 
 import cs5004.marblesolitaire.model.Cell;
-import cs5004.marblesolitaire.model.EnglishBoard;
 import cs5004.marblesolitaire.model.EnglishSolitaireModelImpl;
 
 /**
@@ -109,8 +108,8 @@ public class TriangleSolitaireModelImpl extends EnglishSolitaireModelImpl {
   public void move(int fromRow, int fromCol, int toRow, int toCol) {
 
     // if given start cell is not a peg, throw exception
-    if (validMoveInput(fromRow, fromCol, toRow, toCol)) {
-      try {
+    try {
+      if (validMoveInput(fromRow, fromCol, toRow, toCol)) {
         // check horizontal and diagonal moves
         if (moveHorizontal(fromRow, fromCol, toRow, toCol)
                 || moveDiagonal(fromRow, fromCol, toRow, toCol)) {
@@ -123,12 +122,12 @@ public class TriangleSolitaireModelImpl extends EnglishSolitaireModelImpl {
           return;
         }
       }
-      // if index is out of bounds, throw new IllegalArgumentException
-      catch (ArrayIndexOutOfBoundsException i) {
-        throw new IllegalArgumentException("This cell does not exist on the board.");
-      }
+      throw new IllegalArgumentException("Invalid cell position (r,c)");
     }
-    throw new IllegalArgumentException("Invalid cell position (r,c)");
+    // if index is out of bounds, throw new IllegalArgumentException
+    catch (ArrayIndexOutOfBoundsException i) {
+      throw new IllegalArgumentException("Invalid cell position (r,c)");
+    }
   }
 
   /**

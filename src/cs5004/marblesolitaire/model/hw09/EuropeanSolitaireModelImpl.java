@@ -1,7 +1,6 @@
 package cs5004.marblesolitaire.model.hw09;
 
 import cs5004.marblesolitaire.model.Cell;
-import cs5004.marblesolitaire.model.EnglishBoard;
 
 /**
  * This class represents a single game of Marble Solitaire. It
@@ -30,8 +29,6 @@ public class EuropeanSolitaireModelImpl extends AbstractMarbleSolitaireModel {
    * @throws IllegalArgumentException if the row or column are not valid
    * */
   public EuropeanSolitaireModelImpl(int sRow, int sCol) {
-    super(sRow, sCol);
-
     try {
       this.board = new EuropeanBoard();
 
@@ -56,8 +53,6 @@ public class EuropeanSolitaireModelImpl extends AbstractMarbleSolitaireModel {
    * @throws IllegalArgumentException if the row or column are not valid
    * */
   public EuropeanSolitaireModelImpl(int arm) {
-    super(arm);
-
     // check arm is a valid value
     if (isInvalidArm(arm)) {
       throw new IllegalArgumentException("Invalid arm thickness.");

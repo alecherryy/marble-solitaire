@@ -25,7 +25,7 @@ public class EnglishSolitaireModelImpl extends AbstractMarbleSolitaireModel {
    * @param sCol the row of the empty cell
    * @throws IllegalArgumentException if the row or column are not valid
    * */
-  public EnglishSolitaireModelImpl(int sRow, int sCol) throws IllegalArgumentException {
+  public EnglishSolitaireModelImpl(int sRow, int sCol) {
     super(sRow, sCol);
   }
 

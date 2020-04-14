@@ -4,11 +4,12 @@ import cs5004.marblesolitaire.model.hw09.AbstractBoard;
 import cs5004.marblesolitaire.model.hw09.BoardType;
 
 /**
- * This class represents an English Board for Marble Solitaire. Traditionally, this
- * board is 9x9 and in the shape of a cross. Each cell contains an Enum Type representing
- * the invalid, empty and occupied cells.
+ * This class represents an English Board for Marble Solitaire. Traditionally,
+ * this board is in the shape of a cross. Each cell contains
+ * an enumerate type representing the invalid, empty and occupied cells.
  * */
 public class EnglishBoard extends AbstractBoard {
+
   /**
    * This is the board constructor.
    */

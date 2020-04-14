@@ -6,8 +6,8 @@ import cs5004.marblesolitaire.model.MarbleSolitaireModel;
 
 /**
  * This class represents a single game of Marble Solitaire. It implements
- * all the methods listed in the Marble Solitaire interface. Marble Solitaire has
- * a board and a score.
+ * all the methods listed in the Marble Solitaire Interface.
+ * Each class has a board and a score.
  * */
 public abstract class AbstractMarbleSolitaireModel implements MarbleSolitaireModel {
   protected Board board;
@@ -85,9 +85,9 @@ public abstract class AbstractMarbleSolitaireModel implements MarbleSolitaireMod
       }
       // set the center
       int center = (int) Math.floor(this.board.getLength() / 2);
-      // eliminate default empty cell
+      // update default empty cell
       this.board.changeCell(center, center, Cell.PEG);
-      //  set new empty cell
+      // set new empty cell
       this.board.changeCell(sRow, sCol, Cell.EMPTY);
       this.score = this.board.countPegs();
     }
@@ -174,12 +174,12 @@ public abstract class AbstractMarbleSolitaireModel implements MarbleSolitaireMod
    * @return true if it's a valid horizontal move, otherwise returns false
    * */
   protected boolean validMoveInput(int fromRow, int fromCol, int toRow, int toCol) {
-    return this.board.getCell(fromRow, fromCol) == Cell.PEG
+    return  this.board.getCell(fromRow, fromCol) == Cell.PEG
             && this.board.getCell(toRow, toCol) == Cell.EMPTY;
   }
   /**
-   * Helper function to check if move is horizontal. It takes 4 parameters: the
-   * start row, the start col, the destination row and the destination col.
+   * Helper function to check if move is horizontal. It takes 4 parameters:
+   * the start row, the start col, the destination row and the destination col.
    *
    * @param fromRow the row number of the position to be moved from
    *                (starts at 0)
@@ -201,8 +201,8 @@ public abstract class AbstractMarbleSolitaireModel implements MarbleSolitaireMod
   }
 
   /**
-   * Helper function to check if move is vertically. It takes 4 parameters: the
-   * start row, the start col, the destination row and the destination col.
+   * Helper function to check if move is vertically. It takes 4 parameters:
+   * the start row, the start col, the destination row and the destination col.
    *
    * @param fromRow the row number of the position to be moved from
    *                (starts at 0)
@@ -219,7 +219,7 @@ public abstract class AbstractMarbleSolitaireModel implements MarbleSolitaireMod
       this.board.changeCell((fromRow + toRow) / 2, toCol, Cell.EMPTY);
       return true;
     }
-    // if cols don't match, it's not a horizontal move so return
+    // if cols don't match, it's not a vertical move so return
     return false;
   }
 

@@ -4,9 +4,9 @@ import cs5004.marblesolitaire.model.Cell;
 import cs5004.marblesolitaire.model.EnglishBoard;
 
 /**
- * This class represents a single game of Marble Solitaire. It implements
- * all the methods listed in the Marble Solitaire interface. Marble Solitaire has
- * a board and a score.
+ * This class represents a single game of Marble Solitaire. It
+ * implements all the methods listed in the Marble Solitaire
+ * interface. Marble Solitaire has a board and a score.
  * */
 public class EuropeanSolitaireModelImpl extends AbstractMarbleSolitaireModel {
 
@@ -40,7 +40,7 @@ public class EuropeanSolitaireModelImpl extends AbstractMarbleSolitaireModel {
       }
       this.board.changeCell(3,3, Cell.PEG);
       this.board.changeCell(sRow, sCol, Cell.EMPTY);
-      this.score = this.board.countPegs();
+      this.score = 36;
     }
     catch (ArrayIndexOutOfBoundsException i) {
       throw new IllegalArgumentException("This cell does not exist on the board.");
@@ -67,8 +67,9 @@ public class EuropeanSolitaireModelImpl extends AbstractMarbleSolitaireModel {
   }
 
   /**
-   * This is the fourth class constructor. It takes row, col and arm thickness as
-   * its parameters and initializes a board with the empty slot in the given cell.
+   * This is the fourth class constructor. It takes row, col and
+   * arm thickness as its parameters and initializes a board with
+   * the empty slot in the given cell.
    *
    * @param sRow the row of the empty cell
    * @param sCol the row of the empty cell

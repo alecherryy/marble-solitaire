@@ -115,7 +115,7 @@ public class EuropeanSolitaireModelImplTest {
             + "O O O O O O O\n"
             + "O O O O O O O\n"
             + "  O O O O O\n"
-            + "    O O O", josiah.getGameState());
+            + "    O O O", kevin.getGameState());
     alessia = new EuropeanSolitaireModelImpl(3, 5,1);
     Assert.assertEquals(""
             + "    O O O\n"
@@ -155,7 +155,7 @@ public class EuropeanSolitaireModelImplTest {
    * Test for class constructors exceptions.
    */
   @Test (expected = IllegalArgumentException.class)
-  public void testInvalidGetMarkAtRow() {
+  public void testInvalidClassConstructor() {
     josiah = new EuropeanSolitaireModelImpl(0);
     jenn = new EuropeanSolitaireModelImpl(2);
     kevin = new EuropeanSolitaireModelImpl(6);
@@ -242,7 +242,7 @@ public class EuropeanSolitaireModelImplTest {
             + "O _ O O O O O\n"
             + "O _ O _ O O O\n"
             + "O O _ O O O O\n"
-            + "  O O O O\n"
+            + "  O O O O O\n"
             + "    O O O", kevin.getGameState());
     chandler = new EuropeanSolitaireModelImpl(3, 0, 4);
     Assert.assertEquals(""

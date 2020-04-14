@@ -76,9 +76,27 @@ public class EuropeanSolitaireModelImpl extends AbstractMarbleSolitaireModel {
    * @throws IllegalArgumentException if the row or column are not valid
    * */
   public EuropeanSolitaireModelImpl(int arm, int sRow, int sCol) {
-    super(arm, sRow, sCol);
-
-    this.board = new EnglishBoard();
-    this.score = this.board.countPegs();
+    try {
+      // check arm is a valid value
+      if (isInvalidArm(arm)) {
+        throw new IllegalArgumentException("Invalid arm thickness.");
+      }
+      this.board = new EuropeanBoard(arm);
+      // check row and col are valid
+      if (isNotValidCenter(sRow, sCol)) {
+        throw new IllegalArgumentException("Invalid empty cell position (r,c)");
+      }
+      // set the center
+      int center = (int) Math.floor(this.board.getLength() / 2);
+      // eliminate default empty cell
+      this.board.changeCell(center, center, Cell.PEG);
+      //  set new empty cell
+      this.board.changeCell(sRow, sCol, Cell.EMPTY);
+      this.score = this.board.countPegs();
+    }
+    // if out of bound exception, throw IllegalArgumentException
+    catch (ArrayIndexOutOfBoundsException i) {
+      throw new IllegalArgumentException("This cell does not exist on the board.");
+    }
   }
 }

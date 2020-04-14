@@ -137,43 +137,46 @@ public abstract class AbstractMarbleSolitaireModel implements MarbleSolitaireMod
    */
   public void move(int fromRow, int fromCol, int toRow, int toCol) {
     // if given start cell is not a peg, throw exception
-    if (this.board.getCell(fromRow, fromCol) != Cell.PEG) {
-      throw new IllegalArgumentException("Invalid move.");
-    }
-
-    try {
-      // call moveHorizontal() helper function
-      if (moveHorizontal(fromRow, fromCol, toRow, toCol)) {
-        // change the state of the old cell
-        this.board.changeCell(fromRow, fromCol, Cell.EMPTY);
-        // change the state of the middle cell
-        this.board.changeCell(toRow, (fromCol + toCol) / 2, Cell.EMPTY);
-        // change the state of the new cell
-        this.board.changeCell(toRow, toCol, Cell.PEG);
-        // change the score
-        this.score--;
-        return;
+    if (validMoveInput(fromRow, fromCol, toRow, toCol)) {
+      try {
+        // check horizontal and vertical moves
+        if (moveHorizontal(fromRow, fromCol, toRow, toCol)
+        || moveVertical(fromRow, fromCol, toRow, toCol)) {
+          // change the state of the old cell
+          this.board.changeCell(fromRow, fromCol, Cell.EMPTY);
+          // change the state of the new cell
+          this.board.changeCell(toRow, toCol, Cell.PEG);
+          // change the score
+          this.score--;
+          return;
+        }
       }
-      // call moveVertical() helper function
-      else if (moveVertical(fromRow, fromCol, toRow, toCol)) {
-        // change the state of the new cell
-        this.board.changeCell(fromRow, fromCol, Cell.EMPTY);
-        // change the state of the middle cell
-        this.board.changeCell((fromRow + toRow) / 2, toCol, Cell.EMPTY);
-        // change the state of the new cell
-        this.board.changeCell(toRow, toCol, Cell.PEG);
-        // change the score
-        this.score--;
-        return;
+      // if index is out of bounds, throw new IllegalArgumentException
+      catch (ArrayIndexOutOfBoundsException i) {
+        throw new IllegalArgumentException("This cell does not exist on the board.");
       }
-      throw new IllegalArgumentException("Invalid cell position (r,c)");
     }
-    // if index is out of bounds, throw new IllegalArgumentException
-    catch (ArrayIndexOutOfBoundsException i) {
-      throw new IllegalArgumentException("This cell does not exist on the board.");
-    }
+    throw new IllegalArgumentException("Invalid cell position (r,c)");
   }
 
+  /**
+   * Helper function to check if the initial cell and the
+   * destination cell are valid.
+   *
+   * @param fromRow the row number of the position to be moved from
+   *                (starts at 0)
+   * @param fromCol the column number of the position to be moved from
+   *                (starts at 0)
+   * @param toRow the row number of the position to be moved to
+   *              (starts at 0)
+   * @param toCol the column number of the position to be moved to
+   *              (starts at 0)
+   * @return true if it's a valid horizontal move, otherwise returns false
+   * */
+  protected boolean validMoveInput(int fromRow, int fromCol, int toRow, int toCol) {
+    return this.board.getCell(fromRow, fromCol) == Cell.PEG
+            && this.board.getCell(toRow, toCol) == Cell.EMPTY;
+  }
   /**
    * Helper function to check if move is horizontal. It takes 4 parameters: the
    * start row, the start col, the destination row and the destination col.
@@ -189,10 +192,12 @@ public abstract class AbstractMarbleSolitaireModel implements MarbleSolitaireMod
    * @return true if it's a valid horizontal move, otherwise returns false
    * */
   protected boolean moveHorizontal(int fromRow, int fromCol, int toRow, int toCol) {
-    // if rows don't match, it's not a horizontal move so return
-    return fromRow == toRow
-            && Math.abs(fromCol - toCol) == 2
-            && this.board.getCell(toRow, toCol) == Cell.EMPTY;
+    if (fromRow == toRow && Math.abs(fromCol - toCol) == 2) {
+      this.board.changeCell(toRow, (fromCol + toCol) / 2, Cell.EMPTY);
+      return true;
+    }
+    // if rows don't match, it's not a horizontal move so return false
+    return false;
   }
 
   /**
@@ -210,10 +215,12 @@ public abstract class AbstractMarbleSolitaireModel implements MarbleSolitaireMod
    * @return true if it's a valid horizontal move, otherwise returns false
    * */
   private boolean moveVertical(int fromRow, int fromCol, int toRow, int toCol) {
+    if (fromCol == toCol && Math.abs(fromRow - toRow) == 2) {
+      this.board.changeCell((fromRow + toRow) / 2, toCol, Cell.EMPTY);
+      return true;
+    }
     // if cols don't match, it's not a horizontal move so return
-    return fromCol == toCol
-            && Math.abs(fromRow - toRow) == 2
-            && this.board.getCell(toRow, toCol) == Cell.EMPTY;
+    return false;
   }
 
   /**

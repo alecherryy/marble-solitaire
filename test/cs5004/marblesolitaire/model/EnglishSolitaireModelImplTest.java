@@ -153,7 +153,7 @@ public class EnglishSolitaireModelImplTest {
    * Test for class constructors exceptions.
    */
   @Test (expected = IllegalArgumentException.class)
-  public void testInvalidGetMarkAtRow() {
+  public void testInvalidClassConstructor() {
     josiah = new EnglishSolitaireModelImpl(4);
     jenn = new EnglishSolitaireModelImpl(-3);
     chandler = new EnglishSolitaireModelImpl(0,0);
@@ -296,7 +296,7 @@ public class EnglishSolitaireModelImplTest {
   }
 
   /**
-   * Test for class constructors exceptions.
+   * Test for class move() exceptions.
    */
   @Test (expected = IllegalArgumentException.class)
   public void testInvalidMove() {
@@ -319,5 +319,4 @@ public class EnglishSolitaireModelImplTest {
     // empty cell
     chris.move(3,3, 5,3);
   }
-
 }

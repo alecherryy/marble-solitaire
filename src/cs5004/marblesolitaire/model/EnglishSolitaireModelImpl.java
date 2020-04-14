@@ -39,9 +39,6 @@ public class EnglishSolitaireModelImpl extends AbstractMarbleSolitaireModel {
    * */
   public EnglishSolitaireModelImpl(int arm) {
     super(arm);
-
-    this.board = new EnglishBoard();
-    this.score = this.board.countPegs();
   }
 
   /**
@@ -55,8 +52,5 @@ public class EnglishSolitaireModelImpl extends AbstractMarbleSolitaireModel {
    * */
   public EnglishSolitaireModelImpl(int arm, int sRow, int sCol) {
     super(arm, sRow, sCol);
-
-    this.board = new EnglishBoard();
-    this.score = this.board.countPegs();
   }
 }
